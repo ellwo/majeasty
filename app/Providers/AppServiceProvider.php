@@ -41,29 +41,29 @@ class AppServiceProvider extends ServiceProvider
 
 //        Cache::flush();
 
-        $depts=Cache::remember('depts',60*60,function (){
-          return
-           Department::orderBy("created_at","desc")->get();
-        });
-        $cities= City::all();
-            view()->share('depts',$depts);
-          view()->share('city',$cities);
+       // $depts=Cache::remember('depts',60*60,function (){
+         // return
+           //Department::orderBy("created_at","desc")->get();
+        //});
+       // $cities= City::all();
+         //   view()->share('depts',$depts);
+         // view()->share('city',$cities);
 
 
-          $settings=Cache::remember("settings",360*60,function(){
-              return  SiteSetting::all();
-          });
+          //$settings=Cache::remember("settings",360*60,function(){
+            //  return  SiteSetting::all();
+         // });
 
-          $brands=Brand::all();
-          view()->share('brands',$brands);
+          //$brands=Brand::all();
+          //view()->share('brands',$brands);
 
-         foreach($settings as $setting){
+         //foreach($settings as $setting){
 
                        // config("mysetting.".$setting['key'])->set($setting["value"]);
-            Config::set("mysetting.".$setting["key"],$setting["value"]);
+           // Config::set("mysetting.".$setting["key"],$setting["value"]);
 
          //    config("mysetting.".$setting['key'])->set($setting["value"]);
-          }
+          //}
 
 
 
