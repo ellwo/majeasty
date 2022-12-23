@@ -85,7 +85,7 @@
 
                             <span class="txt-type a3g" data-wait="1000"
                                 data-words="[&quot;غسالة&quot;, &quot;ثلاجة&quot;, &quot;طباخات&quot;, &quot;عصارات&quot;]"><span
-                                    class="txt">Startup</span></span>
+                                    class="txt">غسالات</span></span>
                                     ؟
                         </h1>
                         <p class="wow fadeInUp a2J aF aG" data-wow-delay=".1s">
@@ -289,8 +289,9 @@
                                     <x-heroicon-s-mail class="h-8 w-8"/>
                                 </h3>
                                 <p class="aF a1K aG">
-                                    {{ config('mysetting.email_link') }}
-                                </p>
+                                    <a class="hover:text-blue-800" href="mailto:{{ config('mysetting.email_link') }}"> {{ config('mysetting.email_link') }}
+                                    </a>
+                                    </p>
                             </div>
                         </div>
                         <div class="a4 a1v md:a1S/2 lg:a1S/4">
@@ -300,7 +301,7 @@
                                     <x-heroicon-s-phone class="h-8 w-8"/>
                                 </h3>
                                 <p class="aF a1K aG">
-                                    {{ config('mysetting.phone_no') }}
+                                   <a class="hover:text-blue-800" href="callto:{{ config('mysetting.phone_no') }}"> {{ config('mysetting.phone_no') }}</a>
                                 </p>
                             </div>
                         </div>

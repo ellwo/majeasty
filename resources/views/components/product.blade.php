@@ -1,5 +1,5 @@
 
-<div class ="w-full p-0 mx-auto text-sm sm:w-6/12 xl:w-1/3 lg:w-6/4" >
+<div data-wow-wait="1s" data-wow-delay="1s" class ="w-full p-0 mx-auto text-sm wow fadeInUp sm:w-6/12 xl:w-1/3 lg:w-6/4" >
     <div   class="p-1 m-1 border-2 rounded-box hover:bg-white hover:text-black hover:border-yellow-900 ">
        <div dir="rtl" class="relative flex justify-start space-x-2">
         <div class="" x-data="{img:'{{ $product->Mimg }}'}">
@@ -7,7 +7,7 @@
 
             <a   wire:click="changePro({{$id}})">
             <img x-on:mouseleave="img='{{ $product->Mimg  }}'" x-on:mouseenter="img='{{ count($product->imgs??[])>0?$product->imgs[rand(0,count($product->imgs)-1)]:$product->Mimg }}'"
-            class="object-cover object-center w-full h-24 rounded-t-lg md:h-32 " src="{{ $product->Mimg }}" alt="blog">
+            class="object-cover object-center w-full h-24 rounded-t-lg cursor-pointer md:h-32 " src="{{ $product->Mimg }}" alt="blog">
             </a>
 
             <div style="" class="absolute top-0 right-0 text-xs bg-red-700 badge badge-sm">NEW</div>
@@ -49,14 +49,14 @@
 
             <strong class="absolute bottom-0 right-0 flex text-sm bg-white badge badge-accent badge-lg ">
                 {{-- {{$price}} R.Y <span class="text-sm"> /one </span> --}}
-                <div class="flex">
+                {{-- <div class="flex">
                     @for($i=1; $i<=$reatavg; $i++)
                         <x-bi-star-fill class="w-4 h-4 text-yellow-400 " />
                     @endfor
                     @for($j=1; $j<=5-$reatavg; $j++)
                         <x-bi-star-fill class="w-4 h-4 text-gray-800" />
                     @endfor
-                </div>
+                </div> --}}
             </strong>
 
             <hr>
@@ -71,7 +71,7 @@
                     </a>
                     @endforeach
                 </div>
-
+{{--
                 <div class="flex">
                     @for($i=1; $i<=$reatavg; $i++)
                         <x-bi-star-fill class="w-4 h-4 text-yellow-400 " />
@@ -79,7 +79,7 @@
                     @for($j=1; $j<=5-$reatavg; $j++)
                         <x-bi-star-fill class="w-4 h-4 text-gray-800" />
                     @endfor
-                </div>
+                </div> --}}
             </div>
 
 

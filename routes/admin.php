@@ -61,10 +61,12 @@ Route::prefix('admin')->middleware(['role:admin','auth'])->group(function () {
 
 
 
+
     Route::get('/departments.show',\App\Http\Livewire\Admin\DepartmentTable::class)->name('departments.show');
-    Route::post('/departments.store',[\App\Http\Controllers\DepartmentController::class,'store'])->name('departments.store');
+   Route::post('/departments.store',[\App\Http\Controllers\DepartmentController::class,'store'])->name('departments.store');
     Route::post('/departments.update',[\App\Http\Controllers\DepartmentController::class,'update'])->name('departments.update');
 
+    Route::resource('/depts', App\Http\Controllers\DepartmentController::class)->name('index','depts');
     Route::get("/orders",[App\Http\Controllers\OrderController::class,"orders"])->name("admin.orders");
 
     Route::get("/acceptorders{id}",[App\Http\Controllers\OrderController::class,"acceptorder"])->name("admin.orders.accept");

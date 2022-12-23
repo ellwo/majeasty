@@ -10,8 +10,9 @@
 
     <div class="px-2 mx-2 navbar-start">
     <span class="text-lg font-bold">
-            <img class="h-12" src="{{config("mysetting.logo")}}">
-          </span>
+        <img class="h-12 dark:hidden" src="{{config("mysetting.logo")}}">
+        <img class="h-12 hidden dark:block" src="{{asset('myimages/bg-images/migestlogoLight.svg')}}">
+    </span>
     </div>
 
     <div  class="hidden px-2 mx-2 navbar-center md:flex">

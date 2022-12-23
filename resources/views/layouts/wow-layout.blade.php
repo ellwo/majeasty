@@ -27,9 +27,11 @@
             <div class="a1R a5 a6">
                 <div class="a4 a1v sm:a1S/2 md:a1p/12 lg:a1T/12 xl:a1T/12">
                     <div class="a1U ae[330px]">
-                        <a href="https://go-tailwind.preview.uideck.com/index.html" class="a1V af">
+                        <a href="#top" class="a1V flex af">
                             <img src="{{ asset('myimages/bg-images/migestlogoLight.svg') }}" alt="logo" class="ag ah[50px] dark:ai">
                             <img src="{{ config('mysetting.logo') }}" alt="logo" class="ah[50px] dark:ag">
+                            <h1 class="inline-block text-3xl text-m_primary">{{ config('mysetting.site_name') }}</h1>
+
                         </a>
 
                     </div>
@@ -37,21 +39,21 @@
                 <div class="a1S/2 a1v md:a1T/12 lg:a1T/12 xl:a1W/12">
                     <div class="a1U">
                         <h3 class="a1X aE a1Y a1K a1t dark:aI">
-                            Company
+                            اختصارات
                         </h3>
                         <ul class="a1Z">
                             <li>
                                 <a href="javascript:void(0)" class="aE aF aG hover:aH dark:hover:aI">
-                  Home
+                  الرئيسية
                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="aE aF aG hover:aH dark:hover:aI">
-                  Product
+                                <a href="{{ url('product/all') }}" class="aE aF aG hover:aH dark:hover:aI">
+                  منتجاتنا
                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="aE aF aG hover:aH dark:hover:aI">
+                                <a href="" class="aE aF aG hover:aH dark:hover:aI">
                   Careers
                   <span class="a1_ aS a16 a20 a21 aE a22 aI">
                     Hiring
@@ -66,35 +68,10 @@
                         </ul>
                     </div>
                 </div>
-                <div class="a1S/2 a1v md:a1T/12 lg:a1T/12 xl:a1W/12">
-                    <div class="a1U">
-                        <h3 class="a1X aE a1Y a1K a1t dark:aI">
-                            Support
-                        </h3>
-                        <ul class="a1Z">
-                            <li>
-                                <a href="javascript:void(0)" class="aE aF aG hover:aH dark:hover:aI">
-                  Company
-                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="aE aF aG hover:aH dark:hover:aI">
-                  Press media
-                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="aE aF aG hover:aH dark:hover:aI">
-                  Our Blog
-                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="aE aF aG hover:aH dark:hover:aI">
-                  Contact Us
-                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+
+
+
+
                 <div class="a4 a1v sm:a1S/2 md:a1p/12 lg:a1T/12 xl:a1W/12">
                     <div class="a1U">
                         <h3 class="a1X aE a1Y a1K a1t dark:aI">

@@ -380,6 +380,20 @@ x-data="{
 
         @endisset
     </x-slot>
+    
+    <script>
+
+        const showPhotoPopUp=()=>{
+
+            return{
+            showPhoto:false,
+            image_src:''
+            }
+
+        }
+
+
+    </script>
 
 
 </section>

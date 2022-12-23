@@ -11,20 +11,28 @@ class DepartmentController extends Controller
     //
 
 
+    public function index(Request $request)
+    {
+        return view('admin.department.show');
+        # code...
+    }
 
 
+    public function create()
+    {
+        return view('admin.department.create');
+        # code...
+    }
 
     public function store(Request $request){
 
         if($request->isMethod('POST')){
 
 
-            if($request['name']==null ||  $request['note']==null || $request['imgurl']==null){
-
-                return $data = ['statt' => 'error', 'message' => 'Some Data are missed'];
-            }
-
-            else{
+            $this->validate($request,[
+                'name'=>'required',
+                'imgurl'=>'required'
+            ]);
 
                 $dept=Department::create([
                    'name'=>$request['name'],
@@ -37,10 +45,9 @@ class DepartmentController extends Controller
 
                 session()->flash('statt', 'ok');
                 session()->flash('message', 'تم الحفظ بنجاح ');
+               return redirect()->route('depts')->with('statt','ok');
                 return $data = ['statt' => 'ok'];
             }
-
-        }
 
 
 
@@ -48,22 +55,19 @@ class DepartmentController extends Controller
 
     }
 
-    public function update(Request $request){
+    public function edit(Department $dept)
+    {
+        return view('admin.department.edit',['dept'=>$dept]);
+        # code...
+    }
 
-        if($request->isMethod('POST')){
-
-
-            if($request['name']==null || $request['imgurl']==null || $request['note']==null || $request['dept_id']==null){
-                return $data = ['statt' => 'error', 'name'=>$request["name"],'img'=>$request["imgurl"],'message' => 'Some Data are missed'];
-
-            }
-
-            else{
-
-                $dept=Department::find($request['dept_id']);
+    public function update(Request $request,Department $dept){
 
 
-                if($dept!=null) {
+            $this->validate($request,[
+                'name'=>'required',
+                'imgurl'=>'required'
+            ]);
                     $dept->update([
                         'name' => $request['name'],
                         'note' => $request['note'],
@@ -71,20 +75,15 @@ class DepartmentController extends Controller
                     ]);
                     Cache::flush();
                     session()->flash('statt', 'ok');
-                    session()->flash('message', 'تم الحفظ بنجاح ');
-                    return $data = ['statt' => 'ok'];
-                }
-                else{
-                    return $data = ['statt' => 'error', 'message' => 'Some Data are missed'];
+                    session()->flash('message', 'تم التعديل بنجاح ');
+                    return redirect()->route('depts');
 
-                }
             }
 
-        }
 
 
 
 
 
-    }
+
 }

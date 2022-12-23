@@ -1,19 +1,46 @@
 
 
-<div  data-wow-delay=".5s" class="mt-6 wow fadeInUp text-black bg-white shadow-2xl rounded-xl dark:bg-dark-eval-2 lg:px-8" >
+<div x-data="showPhotoPopUp"  data-wow-wait=".6s" data-wow-delay=".8s" class="mt-6 text-black bg-white shadow-2xl wow fadeInUp rounded-xl dark:bg-dark-eval-2 lg:px-8" >
 
-    <a class="cursor-pointer bg-green-600 p-4 text-sm rounded border text-white" wire:click='come_back()' >عودة</a>
+
+    <transition
+        enter-active-class="transition"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+       >
+<div   x-show="showPhoto" class="relative">
+<div class="fixed inset-0 z-30 flex w-full h-full transition-transform duration-500 transform bg-black opacity-80">
+</div>
+
+<div class="fixed inset-x-0 inset-y-0 z-50 flex flex-col items-center justify-center mx-auto my-auto transition-transform duration-500 transform bg-white sm:inset-x-1/3 ">
+    <div class="relative flex flex-col">
+    <img class="my-auto align-middle " :src="image_src"/>
+
+ <a class="z-50 p-4 font-bold text-white align-bottom bg-black border rounded-md cursor-pointer " :href="image_src" download> تنزيل </a>
+</div>
+</div>
+
+<div class="fixed z-50 mx-auto my-auto transition-transform duration-500 transform top-6">
+<span @click="showPhoto=false" class="p-4 text-red-600 bg-white rounded-full cursor-pointer sm:p-6 sm:text-2xl hover:bg-slate-200">X</span>
+</div>
+
+</div>
+</transition>
+    <a class="p-4 text-sm text-white bg-green-600 border rounded cursor-pointer" wire:click='come_back()' >عودة</a>
     <div class="flex flex-col p-4 rounded lg:flex-row ">
 
 
 
 
 
-        <div class="lg:flex-1 sm:px-4">
+        <div data-wow-wait="2s" data-wow-delay="2s" class="wow fadeInUp lg:flex-1 sm:px-4">
             <div x-data="{ image: '{{$product->Mimg}}' }" x-cloak>
                 <div class="mb-4 bg-gray-100 border border-blue-600 rounded-lg lg:h-80">
                     <div  class="flex items-center justify-center mb-4 bg-gray-100 rounded-lg lg:h-80">
-                        <img  class="h-full rounded-lg" :src="image">
+                        <img  @click="image_src=image; showPhoto=true;"  class="h-full rounded-lg" :src="image">
                     </div>
 
 
@@ -40,7 +67,7 @@
         </div>
 
 
-        <div class="lg:flex-1 sm:px-4" >
+        <div data-wow-wait="1s" data-wow-delay="1s" class="lg:flex-1 wow fadeInDown sm:px-4" >
 
             @if($openmodal==1)
             @livewire('order-model', ['proid' => $product->id,'open'=>$openmodal], key('ordermode'.$product->id))
@@ -81,14 +108,14 @@
 
                     <div x-show="tap==3"  >
 
-                        <div dir="rtl"  class="flex flex-col dark:text-white items-end justify-end lg:flex-1 sm:px-4">
+                        <div dir="rtl"  class="flex flex-col items-end justify-end dark:text-white lg:flex-1 sm:px-4">
 
-                            <div  class="flex w-full flex-col border border-b-0 rounded-md">
+                            <div  class="flex flex-col w-full border border-b-0 rounded-md">
 
 
                                 @foreach ($product->discrip??[] as $k => $v)
-                                    <div dir="" class="flex  text-right justify-start items-start space-x-2">
-                                        <div class="w-1/4 h-full px-2 font-bold border-l-2 text-blue-700">
+                                    <div dir="" class="flex items-start justify-start space-x-2 text-right">
+                                        <div class="w-1/4 h-full px-2 font-bold text-blue-700 border-l-2">
                                             {{ $k }}
 
                                         </div>
@@ -110,7 +137,7 @@
 
                     <div x-show="tap==1"  >
 
-                        <div dir="rtl"  class="flex flex-col dark:text-white items-start justify-start lg:flex-1 sm:px-4">
+                        <div dir="rtl"  class="flex flex-col items-start justify-start dark:text-white lg:flex-1 sm:px-4">
                             <h2  class="mb-2 text-xl font-bold text-gray-800 dark:text-white md:text-2xl">{{$product->name}}
                                 </h2>
                             <p class="mb-2 text-sm text-gray-500 dark:text-white">{{__('الموديل')}}::[
@@ -124,14 +151,14 @@
 {{--
                             <p class="mb-2 text-sm text-gray-500 dark:text-white">{{__('الماركة العلامة التجارية')}}/
 
-                                <a wire:click="setBrand({{$product->brand->id?? 'all'}})" class="dark:text-info-light inline-flex space-x-2 justify-between rounded-md p-1 border text-indigo-700 cursor-pointer  hover:underline">{{$product->brand?->name}}
-                                <img class="h-6 inline-flex mx-2" src="{{ $product->brand?->img }}" />
+                                <a wire:click="setBrand({{$product->brand->id?? 'all'}})" class="inline-flex justify-between p-1 space-x-2 text-indigo-700 border rounded-md cursor-pointer dark:text-info-light hover:underline">{{$product->brand?->name}}
+                                <img class="inline-flex h-6 mx-2" src="{{ $product->brand?->img }}" />
                                 </a>
                             </p> --}}
-<p class="mb-2 text-sm text-gray-500  dark:text-white">{{__('الفئات')}}/
+<p class="mb-2 text-sm text-gray-500 dark:text-white">{{__('الفئات')}}/
                                  @foreach ($product->parts as $item)
                                  <a class="cursor-pointer hover:bg-info hover:text-white" wire:click='setPart({{ $item->id }})'>
-                                 <span class="badge badge-md p-4">{{ $item->name }}</span>
+                                 <span class="p-4 badge badge-md">{{ $item->name }}</span>
                                  </a>
                                  @endforeach
                             </p>
@@ -162,10 +189,9 @@
 
                             <h2>الوصف</h2>
 
-                            <div x-data='{openmore:false, len:{{ strlen($product->note) }}}' x-transition :class="{'h-32 pb-12 overflow-y-hidden mb-14':!openmore && len>400}" class="relative
-                            transition-all ">
+                            <div x-data='{openmore:false, len:{{ strlen($product->note) }}}' x-transition :class="{'h-32  overflow-y-hidden ':!openmore && len>400}" class="relative text-sm text-right transition-all ">
 
-                                <p class="text-right">
+                                <p dir="rtl" class="">
 
 
 
@@ -203,14 +229,14 @@
 
                                 @if($isliked==true)
                                 <div class="flex">
-                                    <a wire:click="dislike('{{$cart->where('id',$product->id)->pluck('rowId')->first()}}')" class="flex space-x-2 mx-2 p-4 cursor-pointer">
+                                    <a wire:click="dislike('{{$cart->where('id',$product->id)->pluck('rowId')->first()}}')" class="flex p-4 mx-2 space-x-2 cursor-pointer">
                                         <x-bi-heart-fill class="w-6 h-6 text-red-800 "/>
                                         {{__('ازالة من للمفضلات')}}
                                     </a>
                                 </div>
                                 @else
                                     <div class="flex">
-                                        <a wire:click="like({{$product->id}})" class="flex mx-2 p-4 cursor-pointer">
+                                        <a wire:click="like({{$product->id}})" class="flex p-4 mx-2 cursor-pointer">
                                             <x-bi-heart class="w-6 h-6 text-yellow-400 hover:text-red-800 "/>
                                             {{__('اضف للمفضلات')}}
                                         </a>
@@ -390,5 +416,7 @@
 
 
     </div>
+
+
 
 </div>
